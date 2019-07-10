@@ -77,7 +77,16 @@
                   "title": "Show on course load",
                   "inputType": "Checkbox",
                   "validators": [],
-                  "help": "Controls whether the Language Picker should be displayed on course load or not."
+                  "help": "Determines whether the language picker will be displayed on course load. If set to false, the course will load with the default language selected and the user will need to use the icon in the navigation bar to change languages."
+                },
+                "_getLanguageFromLms": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Get language from LMS",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Attempt to retrieve the language setting from LMS. If successful, language selector will not be shown on course load."
                 },
                 "_languagePickerIconClass": {
                   "type": "string",

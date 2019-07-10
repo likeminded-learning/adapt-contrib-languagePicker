@@ -46,6 +46,8 @@ The following attributes are set within *config.json*.
 
 >**_showOnCourseLoad** (boolean): Determines whether the language picker will be displayed on course load. If set to false, the course will load with the default language selected and the user will need to use the icon in the navigation bar to change languages.
 
+>**_getLanguageFromLms** (boolean): Attempt to retrieve the language setting from LMS. If successful, language selector will not be shown on course load.
+
 >**_languagePickerIconClass** (string): The class defined here will define the icon of the language-picker in the navigation bar. The vanilla theme supports the following class-names by default: "icon-globe", "icon-language-1", "icon-language-2". The default value for this attribute is "icon-language-2".    
 
 >**_restoreStateOnLanguageChange**(boolean): Determines whether or not the language picker will try to restore the 'state' of the course when the user changes language. It is advised that you only set this to `true` if all course languages have exactly the same structure; if they do not, some loss of tracking data will occur. If set to `false`, all tracking data will be cleared when the user switches language - the warningMessage (see below) should be used to warn the user of this.

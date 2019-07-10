@@ -2,8 +2,9 @@ define([
     'core/js/adapt',
     './languagePickerView',
     './languagePickerNavView',
-    './languagePickerModel'
-], function(Adapt, LanguagePickerView, LanguagePickerNavView, LanguagePickerModel) {
+    './languagePickerModel',
+    './languageHelper'
+], function(Adapt, LanguagePickerView, LanguagePickerNavView, LanguagePickerModel, LanguageHelper) {
 
     var languagePickerModel;
 
@@ -23,6 +24,7 @@ define([
         Adapt.config.set('_canLoadData', false);
 
         languagePickerModel = new LanguagePickerModel(Adapt.config.get('_languagePicker'));
+        languageHelper = new LanguageHelper();
 
         Adapt.on('router:menu router:page', setupNavigationView);
 
@@ -38,14 +40,28 @@ define([
      * If it was, load it. If it wasn't, show the language picker
      */
     function onOfflineStorageReady() {
-        var storedLanguage = Adapt.offlineStorage.get('lang');
+        var storedLanguage = Adapt.offlineStorage.get("lang");
 
         if (storedLanguage) {
             languagePickerModel.setLanguage(storedLanguage);
-        } else if (languagePickerModel.get('_showOnCourseLoad') === false) {
-            languagePickerModel.setLanguage(Adapt.config.get('_defaultLanguage'));
-        } else {
-            showLanguagePickerView();
+        }
+        else {
+            if (languagePickerModel.get('_getLanguageFromLms')) {
+                var lmsLanguage = languageHelper.getLanguageCodeFromLms();
+                if (lmsLanguage) {
+                    if (languagePickerModel.getLanguageDetails(lmsLanguage)) {
+                        languagePickerModel.setLanguage(lmsLanguage);
+                        return; // if setLanguage fails, user will be prompted
+                    }
+                }
+            }
+
+            if (languagePickerModel.get('_showOnCourseLoad') === false) {
+                languagePickerModel.setLanguage(Adapt.config.get('_defaultLanguage'));
+            }
+            else {
+                showLanguagePickerView();
+            }
         }
     }
 
