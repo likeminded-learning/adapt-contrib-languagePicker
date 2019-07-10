@@ -1,9 +1,9 @@
 {
     "name": "adapt-contrib-languagePicker",
-    "repository": "git://github.com/adaptlearning/adapt-contrib-languagePicker.git",
+    "repository": "git://github.com/likeminded-learning/adapt-contrib-languagePicker.git",
     "framework": ">=4",
     "version": "3.0.1",
-    "homepage": "https://github.com/adaptlearning/adapt-contrib-languagePicker",
+    "homepage": "https://github.com/likeminded-learning/adapt-contrib-languagePicker",
     "issues": "https://github.com/adaptlearning/adapt_framework/issues",
     "displayName": "Language Picker (LM)",
     "extension": "languagePicker",
